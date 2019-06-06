@@ -25,7 +25,8 @@ If errors with packages:
 ```bash
 composer global require "fxp/composer-asset-plugin:@dev"
 ```
-TODO
+*TODO*
 
-[] Rebuild config file of nginx
-[] Add ```./yii migrate``` to init.sh script
+- [ ]  Rebuild config file of nginx
+
+- [ ]  Add ```./yii migrate``` to init.sh script
