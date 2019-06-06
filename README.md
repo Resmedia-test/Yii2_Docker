@@ -8,10 +8,15 @@
 
 2. Add to docker (file sharing) in settings your project folder
 
-### Start:
+### Commands:
 ```bash
+cd src            // TODO put it to .sh 
+php init          // TODO put it to .sh 
+composer install  // TODO put it to .sh 
+
 docker-compose up -d  // To start without log
 docker-compose up     // To start with log
+
 docker-compose down   // To stop
 ```
 ###
@@ -29,4 +34,4 @@ composer global require "fxp/composer-asset-plugin:@dev"
 
 - [ ]  Rebuild config file of nginx
 
-- [ ]  Add ```./yii migrate``` to init.sh script
+- [ ]  Add ```./yii ``` commands to init.sh script
