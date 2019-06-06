@@ -23,3 +23,6 @@ If errors with packages:
 ```bash
 composer global require "fxp/composer-asset-plugin:@dev"
 ```
+TODO
+
+* Add ```./yii migrate``` to init.sh script
