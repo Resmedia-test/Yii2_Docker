@@ -33,7 +33,7 @@ GO: [http://office.testsite.docker](http://office.testsite.docker)
 Login: test@test.ru
 Password: 1234567890
 
-###
+--------------------------------------------------------------------
 If errors with MYSQL:
 ```bash
 docker-compose down
