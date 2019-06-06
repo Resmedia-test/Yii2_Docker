@@ -41,7 +41,8 @@ composer global require "fxp/composer-asset-plugin:@dev"
 
 If can't start nginx and error is like `Bind for 0.0.0.0:80: unexpected error (Failure EADDRINUSE)` on mac os 
 ```
-sudo killall httpd
+sudo lsof -iTCP -sTCP:LISTEN -n -P
+sudo killall httpd // maybe :-)
 ```
 *TODO*
 
