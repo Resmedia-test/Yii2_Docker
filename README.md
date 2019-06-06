@@ -39,7 +39,7 @@ If errors with packages:
 composer global require "fxp/composer-asset-plugin:@dev"
 ```
 
-If can't start nginx and error is 0.0.0.0:80 on mac os 
+If can't start nginx and error is like `Bind for 0.0.0.0:80: unexpected error (Failure EADDRINUSE)` on mac os 
 ```
 sudo killall httpd
 ```
