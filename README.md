@@ -2,9 +2,17 @@
 
 ## This is docker core for Yii2 projects 
 
-### Inside: Nginx + php-fpm + mysql + redis + phpMyAdmin (all in separated containers) 
+### Inside: 
 
-1. add to hosts file 127.0.0.1 testsite.docker
+Image name | Version
+------------ | -------------
+Nginx | nginx:stable-alpine
+PHP-FPM | merorafael/php:7.1-fpm
+MySql | mysql:5.7
+Redis | bitnami/redis:latest
+PhpMyAdmin | phpmyadmin/phpmyadmin
+
+1. add to hosts file 127.0.0.1 testsite.docker // TODO Add to script
 
 2. Add to docker (file sharing) in settings your project folder
 
