@@ -38,6 +38,11 @@ If errors with packages:
 ```bash
 composer global require "fxp/composer-asset-plugin:@dev"
 ```
+
+If can't start nginx and error is 0.0.0.0:80 on mac os 
+```
+sudo killall httpd
+```
 *TODO*
 
 - [ ]  Rebuild config file of nginx
