@@ -1,0 +1,14 @@
+User-agent: *
+Disallow: /dialog
+Disallow: /account
+
+User-agent: Yandex
+Disallow: /dialog
+Disallow: /account
+Host: http://testSite.zu
+
+User-agent: Googlebot
+Disallow: /dialog
+Disallow: /account
+
+Sitemap: http://pthb.ru/sitemap.xml
