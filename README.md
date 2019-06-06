@@ -12,21 +12,27 @@ MySql | mysql:5.7
 Redis | bitnami/redis:latest
 PhpMyAdmin | phpmyadmin/phpmyadmin
 
-1. add to hosts file 127.0.0.1 testsite.docker // TODO Add to script
+1. add to hosts file `127.0.0.1 testsite.docker` //Frontend
+
+1. add to hosts file `127.0.0.1 office.testsite.docker` //Backend
 
 2. Add to docker (file sharing) in settings your project folder
 
+![Image of Docker](https://image.prntscr.com/image/C5r_SEtQS5_XaMBe6tDtyQ.png)
+
 ### Commands:
 ```bash
-cd src            // TODO put it to .sh 
-php init          // TODO put it to .sh 
-composer install  // TODO put it to .sh 
-
 docker-compose up -d  // To start without log
 docker-compose up     // To start with log
 
 docker-compose down   // To stop
 ```
+
+GO: [http://office.testsite.docker](http://office.testsite.docker)
+
+Login: test@test.ru
+Password: 1234567890
+
 ###
 If errors with MYSQL:
 ```bash
@@ -46,6 +52,4 @@ sudo killall httpd // maybe :-)
 ```
 *TODO*
 
-- [ ]  Rebuild config file of nginx
-
-- [ ]  Add ```./yii ``` commands to init.sh script
+- [ ]  Refactoring Yii2 code
