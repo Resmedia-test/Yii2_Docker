@@ -18,12 +18,12 @@ class Module extends \yii\base\Module
     {
         return [
             'Настройки' => [
-                '/office/main/setting',
-                '/office/main/setting/index',
+                '/main/setting',
+                '/main/setting/index',
             ],
             'Разделы' => [
-                '/office/main/section',
-                '/office/main/section/index',
+                '/main/section',
+                '/main/section/index',
             ],
         ];
     }

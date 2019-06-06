@@ -17,8 +17,8 @@ class Module extends \yii\base\Module
     {
         return [
             'БИБЛИОТЕКА' => [
-                '/office/library',
-                '/office/library/index',
+                '/library',
+                '/library/index',
             ],
         ];
     }

@@ -137,10 +137,10 @@ class User extends ActiveRecord implements IdentityInterface
             [['password', 'password_hash', 'email', 'password_reset_token', 'activation_token','roleName'], 'string'],
             ['role', 'in', 'range' => array_keys(self::$roles)],
 
-            [
+            /*[
                 ['password', 'passwordOld'], 'required',
                 'on' => self::SCENARIO_UPDATE_PASSWORD
-            ],
+            ],*/
           
             //SCENARIO_SIGNUP_FAST
             [

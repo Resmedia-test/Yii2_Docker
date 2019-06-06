@@ -40,10 +40,10 @@ return [
             //comment the following array to send mail using php's mail function
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
-                'host' => 'smtp.gmail.com',
-                'username' => 'manoninforus@gmail.com',
+                'host' => 'smtp.yandex.ru',
+                'username' => 'test@test.ru',
                 'password' => 'Res&983&rt64ERsd',
-                'port' => '587',
+                'port' => 587,
                 'encryption' => 'tls',
             ],
         ],

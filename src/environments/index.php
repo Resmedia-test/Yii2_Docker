@@ -26,6 +26,46 @@
  * ```
  */
 return [
+    'Local' => [
+        'path' => 'local',
+        'setWritable' => [
+            'backend/runtime',
+            'backend/web/assets',
+            'frontend/runtime',
+            'frontend/web/assets',
+            'frontend/web/images/books',
+            'frontend/web/images/users',
+            'frontend/web/uploads',
+        ],
+        'setExecutable' => [
+            'yii',
+            'yii_test',
+        ],
+        'setCookieValidationKey' => [
+            'backend/config/main-local.php',
+            'frontend/config/main-local.php',
+        ],
+    ],
+    'Docker' => [
+        'path' => 'docker',
+        'setWritable' => [
+            'backend/runtime',
+            'backend/web/assets',
+            'frontend/runtime',
+            'frontend/web/assets',
+            'frontend/web/images/books',
+            'frontend/web/images/users',
+            'frontend/web/uploads',
+        ],
+        'setExecutable' => [
+            'yii',
+            'yii_test',
+        ],
+        'setCookieValidationKey' => [
+            'backend/config/main-local.php',
+            'frontend/config/main-local.php',
+        ],
+    ],
     'Development' => [
         'path' => 'dev',
         'setWritable' => [
@@ -34,13 +74,8 @@ return [
             'frontend/runtime',
             'frontend/web/assets',
             'frontend/web/images/books',
-            'frontend/web/images/news',
             'frontend/web/images/users',
             'frontend/web/uploads',
-            'frontend/web/uploads/dialogs',
-            'frontend/web/uploads/articles',
-            'frontend/web/uploads/articles/files',
-            'frontend/web/uploads/articles/images',
         ],
         'setExecutable' => [
             'yii',
@@ -58,13 +93,8 @@ return [
             'frontend/runtime',
             'frontend/web/assets',
             'frontend/web/images/books',
-            'frontend/web/images/news',
             'frontend/web/images/users',
-            'frontend/web/uploads/dialogs',
-            'frontend/web/uploads/articles',
-            'frontend/web/uploads/articles/files',
-            'frontend/web/uploads/articles/images',
-
+            'frontend/web/uploads',
         ],
         'setExecutable' => [
             'yii',

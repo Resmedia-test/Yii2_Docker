@@ -1,8 +1,8 @@
 <?php
 return [
-    'adminEmail' => 'support@pthb.ru',
-    'senderEmail' => 'post@pthb.ru',
-    'domainFrontend' => 'http://testSite.zu',
+    'adminEmail' => 'support@testsite.docker',
+    'senderEmail' => 'post@testsite.docker',
+    'domainFrontend' => 'http://testsite.docker',
     'urlToCke' => empty(Yii::$app->request->hostInfo) ? '/scripts/config-cke.js?v6' : Yii::$app->request->hostInfo . '/scripts/config-cke.js?v6',
     'kcfOptions' => [
         'uploadURL' => '@web/uploads/',

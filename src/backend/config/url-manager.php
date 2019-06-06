@@ -8,7 +8,7 @@
 
 return [
     'class' => 'yii\web\UrlManager',
-    'baseUrl' => '/office',
+    'baseUrl' => '/',
     'enablePrettyUrl' => true,
     'showScriptName' => false,
     'rules' => [

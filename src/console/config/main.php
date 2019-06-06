@@ -7,13 +7,10 @@ $params = array_merge(
 );
 
 return [
-    'id' => 'app-console',
+    'id' => 'console',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log', 'gii'],
     'controllerNamespace' => 'console\controllers',
-    'controllerMap' => [
-        'mongodb-migrate' => 'yii\mongodb\console\controllers\MigrateController',
-    ],
     'modules' => [
         'gii' => 'yii\gii\Module',
     ],
@@ -25,6 +22,13 @@ return [
                     'levels' => ['error', 'warning'],
                 ],
             ],
+        ],
+        'urlManager' => [
+            'class' => 'yii\web\UrlManager',
+            'scriptUrl' => 'http://testsite.docker/',
+            'baseUrl' => 'http://testsite.docker',
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
         ],
     ],
     'params' => $params,

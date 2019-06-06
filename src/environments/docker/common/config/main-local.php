@@ -28,6 +28,16 @@ return [
                 ],
             ],
         ],
+        'cache' => [
+            'class' => 'yii\redis\Cache',
+        ],
+        'redis' => [
+            'class' => 'yii\redis\Connection',
+            'hostname' => 'redis',
+            'port' => 6379,
+            'database' => 3,
+            'password' => 'toor',
+        ],
         'db' => [
             'class' => 'yii\db\Connection',
             'dsn' => 'mysql:host=mysql;dbname=core',
@@ -43,7 +53,7 @@ return [
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.yandex.ru',
-                'username' => 'test@yest.ru',
+                'username' => 'test@test.ru',
                 'password' => 'password',
                 'port' => 587,
                 'encryption' => 'tls',

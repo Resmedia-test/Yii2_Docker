@@ -5,8 +5,8 @@ services:
     image: mysql:5.7
     environment:
       TZ: "Europe/Moscow"
-      MYSQL_DATABASE: core
-      MYSQL_ROOT_PASSWORD: toor
+      MYSQL_DATABASE: 'core'
+      MYSQL_ROOT_PASSWORD: 'toor'
     ports:
       - "3306:3306"
     healthcheck:
@@ -38,6 +38,8 @@ services:
   phpmyadmin:
     container_name: core_phpmyadmin
     image: phpmyadmin/phpmyadmin
+    ports:
+      - 8080:80
     networks:
       - default
     environment:
@@ -47,8 +49,6 @@ services:
       - mysql
     expose:
       - 80
-    networks:
-      - default
 
   nginx:
     container_name: core_nginx
@@ -58,9 +58,11 @@ services:
     volumes:
       - ./src:/var/www/html
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./nginx/conf.d/testsite.conf:/etc/nginx/conf.d/testsite.conf
+      - ./nginx/conf.d/site.conf:/etc/nginx/conf.d/site.conf
       - ./logs:/logs:cached
       - sock_volume:/var/run
+    links:
+      - php
     depends_on:
       - php
     networks:
@@ -78,8 +80,8 @@ services:
       - ./php/zz-docker.conf:/usr/local/etc/php-fpm.d/zz-docker.conf
       - ./php/php-fpm.conf:/usr/local/etc/php-fpm.d/www.conf:cached
       - sock_volume:/var/run
-    #command: bash -c "bash init.sh --env=docker && php-fpm"
-    #restart: on-failure
+    command: bash -c "bash init.sh --env=docker && php-fpm"
+    restart: on-failure
     depends_on:
       - mysql
       - redis
@@ -92,7 +94,7 @@ volumes:
   sock_volume: {}
 
 networks:
-  main_network:
+  default:
     ipam:
       driver: default
       config:

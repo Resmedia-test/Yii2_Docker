@@ -15,12 +15,12 @@ class m190422_084305_add_fields_tables extends Migration
     {
         $this->insert('users', [
             'id' => 1,
-            'auth_key' => 'zxs847krp',
+            'auth_key' => 'z877xs847krp',
             'last_login' => time(),
             'name' => 'Admin',
             'status' => User::STATUS_ACTIVE,
-            'password_hash' => '$2y$13$D7t0GZveLzy3Quhi4LD54O/Suhobff4IscSNP12cQWFZj3KyJHGYO',
-            'email' => 'root@resmedia.ru',
+            'password_hash' => '$2y$13$.wzhXxRPDah7yE.gTlby..Jrv/p.u/ScLJsJbWZb9LK4wFqGYIDW6',
+            'email' => 'test@test.ru',
         ]);
 
         $this->insert('auth_assignments', [

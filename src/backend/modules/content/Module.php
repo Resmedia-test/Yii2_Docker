@@ -19,12 +19,12 @@ class Module extends \yii\base\Module
     {
         return [
             'Страницы' => [
-                '/office/content',
-                '/office/content/page',
+                '/content',
+                '/content/page',
             ],
             'Меню' => [
-                '/office/content/menu',
-                '/office/content/menu/index',
+                '/content/menu',
+                '/content/menu/index',
             ],
         ];
     }

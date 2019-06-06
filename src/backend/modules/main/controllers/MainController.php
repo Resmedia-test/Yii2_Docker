@@ -2,15 +2,9 @@
 namespace backend\modules\main\controllers;
 
 use backend\components\Controller;
-use common\models\Article;
-use common\models\CommentAbuse;
-use common\models\Directway;
-use common\models\Lifestyle;
-use common\models\News;
 use Yii;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
-use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
 use yii\web\UploadedFile;
 

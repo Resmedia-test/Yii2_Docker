@@ -11,7 +11,7 @@ return [
     'name' => "Панель управления",
     'basePath' => dirname(__DIR__),
     'defaultRoute' => 'main/main/index',
-    'homeUrl' => '/office',
+    'homeUrl' => '/',
     'language' => 'ru',
     'bootstrap' => ['log'],
     'modules' => [
@@ -65,7 +65,7 @@ return [
 
         'request' => [
             'class' => 'common\components\Request',
-            'baseUrl' => '/office',
+            'baseUrl' => '/',
             'noCsrfRoutes' => [
                 'main/main/upload'
             ]

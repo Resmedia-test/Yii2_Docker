@@ -38,6 +38,8 @@ $this->title = $model->isNewRecord ? "Создание пользователя"
                 <hr>
                 <?= $form->field($model, 'email', ['options' => ['class' => 'form-group']])->textInput(['maxlength' => 250]) ?>
                 <?= $form->field($model, 'name', ['options' => ['class' => 'form-group']])->textInput(['maxlength' => 250]) ?>
+                <?= $form->field($model, 'password', ['options' => ['class' => 'form-group']])->textInput(['maxlength' => 250]) ?>
+                <?= $form->field($model, 'passwordRepeat', ['options' => ['class' => 'form-group']])->textInput(['maxlength' => 250]) ?>
             </div>
 
             <div id="meta" class="tab-pane fade in">

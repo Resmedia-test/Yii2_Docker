@@ -17,8 +17,8 @@ class Module extends \yii\base\Module
     {
         return [
             'ПОЛЬЗОВАТЕЛИ' => [
-                '/office/users',
-                '/office/users/index',
+                '/users',
+                '/users/index',
             ],
         ];
     }
