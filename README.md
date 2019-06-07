@@ -14,7 +14,7 @@ PhpMyAdmin | phpmyadmin/phpmyadmin
 
 ### Yii2-advanced
 
-After the start you will get divided by domains frontend and backend side, as well as ready-made sections with minimal functions: Users, Settings, Pages, Library, Menu, Content has a form of filling meta tags.
+After start you will get divided by domains frontend and backend side, as well as ready-made sections with minimal functions: Users, Settings, Pages, Library, Menu, Content has a form of filling meta tags. All in Russian lang
 
 ### Start
 
