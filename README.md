@@ -1,6 +1,6 @@
 # WIP! - work in progress
 
-## This is docker core for Yii2 projects 
+## This is docker environment with Yii2-advanced in it 
 
 ### Inside: 
 
@@ -12,11 +12,20 @@ MySql | mysql:5.7
 Redis | bitnami/redis:latest
 PhpMyAdmin | phpmyadmin/phpmyadmin
 
-1. add to hosts file `127.0.0.1 testsite.docker` //Frontend
+### Yii2-advanced
 
-1. add to hosts file `127.0.0.1 office.testsite.docker` //Backend
+After the start you will get divided by domains frontend and backend side, as well as ready-made sections with minimal functions: Users, Settings, Pages, Library, Menu, Content has a form of filling meta tags.
 
-2. Add to docker (file sharing) in settings your project folder
+### Start
+
+1 - Add to your local machine in hosts file:
+
+```bash
+127.0.0.1 testsite.docker        //Frontend
+127.0.0.1 office.testsite.docker //Backend
+```
+
+2 - Add to docker (file sharing) in settings your project folder
 
 ![Image of Docker](https://image.prntscr.com/image/C5r_SEtQS5_XaMBe6tDtyQ.png)
 
@@ -36,11 +45,20 @@ GO: [http://office.testsite.docker](http://office.testsite.docker)
 Login: test@test.ru
 Password: 1234567890
 
+### PhpMyAdmin
+
+Login: root
+Password: toor
+
+[http://testsite.docker:8080](http://testsite.docker:8080)
+
 --------------------------------------------------------------------
+### Mistakes that can be
+
 If errors with MYSQL:
 ```bash
-docker-compose down
-sudo docker volume rm $(sudo docker volume ls -qf dangling=true)
+docker-compose down                                              // Stop all containers
+sudo docker volume rm $(sudo docker volume ls -qf dangling=true) // Clen all old volume
 ```
 
 If errors with packages:
@@ -52,6 +70,7 @@ If can't start nginx and error is like `Bind for 0.0.0.0:80: unexpected error (F
 ```
 sudo lsof -iTCP -sTCP:LISTEN -n -P
 sudo killall httpd // maybe :-)
+Or you can change port in settings
 ```
 *TODO*
 
