@@ -6,3 +6,6 @@ protected/data/*.db
 themes/classic/views/
 /logs/nginx/error.log
 /logs/nginx/access.log
+/src/.cron
+/src/yii_test.bat
+/src/yii_test
