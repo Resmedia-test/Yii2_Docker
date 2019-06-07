@@ -52,6 +52,13 @@ Password: toor
 
 [http://testsite.docker:8080](http://testsite.docker:8080)
 
+### Migration 
+
+```bash
+docker exec -it core_php /bin/bash 
+./yii migrate/create <name_migration>
+```
+
 --------------------------------------------------------------------
 ### Mistakes that can be
 
