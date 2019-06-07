@@ -20,10 +20,9 @@ PhpMyAdmin | phpmyadmin/phpmyadmin
 
 ![Image of Docker](https://image.prntscr.com/image/C5r_SEtQS5_XaMBe6tDtyQ.png)
 
-If you want another settings go an change it `/src/environments`
-for example `/prod/common/config/main-local.php`
-And don't forgot about all settings of docker
+### Settings:
 
+If you want to set all your settings then go to `/src/environments` for example `/prod/common/config/main-local.php`, but in this case you need to change all server settings
 ### Commands:
 ```bash
 docker-compose up -d  // To start without log
