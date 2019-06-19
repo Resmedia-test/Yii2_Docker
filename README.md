@@ -94,9 +94,9 @@ If can't start nginx and error is like Bind for 0.0.0.0:80: unexpected error (Fa
 
 ```bash
 sudo lsof -iTCP -sTCP:LISTEN -n -P
-sudo killall httpd // maybe :-)
-Or you can change port in settings
+sudo killall ......
 ```
+Or you can change port in settings
 
 ### TODO 
 
