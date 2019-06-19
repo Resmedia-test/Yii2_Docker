@@ -42,21 +42,13 @@ docker-compose down   // Stop all containers
 ### 4 Look to host file
 
 ```bash
-docker exec -it core_php /bin/bash
-./yii rbac/init
-```
-
-### 5 Office http://office.testsite.docker
-
-```bash
 127.0.0.1 testsite.docker
 127.0.0.1 office.testsite.docker
 ```
 if there you don't find it, write themselves to the end of the file
 
--------------------------------
+### Office http://office.testsite.docker
 
-### Office 
 ```bash
 http://office.testsite.docker
 Login: test@testsite.docker
@@ -76,7 +68,7 @@ Pass: toor
 docker exec -it core_php /bin/bash
 ./yii migrate/create <migration_name>
 ```
-
+----------------------------------------
 ### Errors 
 
 If Errors with MYSQL
