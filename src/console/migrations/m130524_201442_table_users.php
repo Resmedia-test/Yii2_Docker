@@ -26,12 +26,12 @@ class m130524_201442_table_users extends Migration
             'about' => $this->string()->notNull()->defaultValue(""),
             'experience' => $this->string()->notNull()->defaultValue(""),
             'lastname' => $this->string()->notNull()->defaultValue(""),
-            'username', $this->string()->notNull()->defaultValue(""),
+            'username' => $this->string()->notNull()->defaultValue(""),
             'password_hash' => $this->string()->notNull(),
             'password_reset_token' => $this->string()->notNull()->defaultValue(""),
             'activation_token' => $this->string()->notNull()->defaultValue(""),
             'status' => $this->smallInteger()->notNull()->defaultValue(10),
-            'rates' => $this->text()->notNull()->defaultValue(''),
+            'rates' => $this->text()->notNull()->defaultValue("{}"),
             'last_login' => $this->integer()->notNull(),
         ], $tableOptions);
     }

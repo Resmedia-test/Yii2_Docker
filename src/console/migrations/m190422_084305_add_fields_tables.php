@@ -25,6 +25,7 @@ class m190422_084305_add_fields_tables extends Migration
             'status' => User::STATUS_ACTIVE,
             'password_hash' => '$2y$13$.wzhXxRPDah7yE.gTlby..Jrv/p.u/ScLJsJbWZb9LK4wFqGYIDW6',
             'email' => 'test@testsite.docker',
+            'rates' => '{}'
         ]);
 
         $this->insert('auth_assignments', [
