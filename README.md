@@ -100,4 +100,4 @@ Or you can change port in settings
 
 ### TODO 
 
-[x] Save information in cabinet
+- [ ] Save information in cabinet
