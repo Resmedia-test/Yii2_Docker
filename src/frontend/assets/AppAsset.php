@@ -16,14 +16,13 @@ class AppAsset extends AssetBundle
 
   /*  public $css = [
         'twbs/bootstrap/dist/css/bootstrap.css?_v{hash}'
-    ];
-
-    public $js = [
-        'twbs/bootstrap/dist/js/bootstrap.js'
     ];*/
 
+    public $js = [
+        '/js/main.js',
+    ];
+
     public $depends = [
-        'yii\web\JqueryAsset',
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
         'yii\bootstrap\BootstrapPluginAsset',

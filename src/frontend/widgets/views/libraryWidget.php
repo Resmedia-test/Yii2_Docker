@@ -12,7 +12,7 @@ use yii\helpers\Url;
 <div class="all-feed hidden-xs">
 
     <div class="all-feed-name">
-        <i class="on on-book"></i>ЗНАНИЕ - <span class="name">LIBRARY</span>
+        <i class="ic ic-book"></i>ЗНАНИЕ - <span class="name">LIBRARY</span>
     </div>
 
     <div class="loading">

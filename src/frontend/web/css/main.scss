@@ -1,0 +1,290 @@
+@import "animations.css";
+@import "normalize.css";
+@import "ic.css";
+
+@font-face {
+  font-family: 'soc';
+  src:  url('/fonts/soc.eot?51qpey');
+  src:  url('/fonts/soc.eot?51qpey#iefix') format('embedded-opentype'),
+  url('/fonts/soc.ttf?51qpey') format('truetype'),
+  url('/fonts/soc.woff?51qpey') format('woff'),
+  url('/fonts/soc.svg?51qpey#soc') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+// Document colors
+$navBar: rgb(245, 245, 245);
+$main: rgb(4, 144, 202);
+$gray: rgb(99, 99, 99);
+$link: rgb(53, 79, 133);
+$linkActive: rgb(60, 116, 196);
+// Social colors
+$fb: rgb(59, 89, 152);
+$vk: rgb(69, 102, 142);
+$tw: rgb(0, 132, 180);
+$ok: rgb(237, 129, 43);
+$ins: rgb(193, 53, 132);
+
+body{
+  height: 100%;
+  font-family: "Helvetica Neue Light", sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: 300;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'soc', serif !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-odnoklassniki {
+  &:before {
+    content: "\e900";
+    color: $ok;
+  }
+  &:hover:before{
+    color: $linkActive;
+  }
+}
+.icon-vk{
+  &:before {
+    content: "\e903";
+    color: $vk;
+  }
+  &:hover:before{
+    color: darken($vk, 10);
+  }
+}
+.icon-instagram{
+  &:before {
+    content: "\e904";
+    color: $ins;
+  }
+  &:hover:before{
+    color: darken($ins, 10);
+  }
+}
+.icon-facebook{
+  &:before {
+    content: "\e905";
+    color: $fb;
+  }
+  &:hover:before{
+    color: darken($fb, 10);
+  }
+}
+.icon-twitter{
+  &:before {
+    content: "\e906";
+    color: $tw;
+  }
+  &:hover:before{
+    color: darken($tw, 10);
+  }
+}
+.icon-star-empty{
+  &:before {
+    content: "\e90e";
+  }
+}
+.icon-star-full{
+  &:before {
+    content: "\e90f";
+  }
+}
+
+.modal-body {
+  overflow: hidden;
+}
+.auth-clients{
+  margin: 0 !important;
+  padding: 0;
+  div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  a {
+    font-size: 30px;
+    display: block;
+    padding: 20px 20px 0 20px;
+    text-align: center;
+  }
+  .auth-link{
+    .icon{
+      text-align: center;
+    }
+  }
+}
+.alert-danger,
+.alert-success {
+  position: absolute;
+  z-index: 1000;
+  top: 60px;
+  right: 30px;
+}
+.alert-success{
+  color: #215f21;
+  background-color: rgba(110, 187, 78, 0.83);
+  border-color: #579225;
+}
+.alert-danger{
+  color: #FFF;
+  background-color: rgba(187, 35, 35, 0.83);
+  border-color: #921920;
+}
+.ic-question-sign {
+  display: inline-block;
+  float: left;
+  margin: -2px -3px 0 -6px;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.content {
+  flex: 1 0 auto;
+}
+.footer {
+  flex: 0 0 auto;
+}
+.navbar-defaul{
+  background-color: $navBar;
+}
+li.active a {
+  color: #08b959;
+}
+.photo-circle {
+  display: inline-block;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+li.dropdown {
+  list-style: none;
+}
+.feed{
+  .feed__name{
+    text-align: center;
+    font-size: 20px;
+    font-weight: 100;
+  }
+  .feed__item{
+    margin: 10px 0;
+    padding: 15px;
+    border: 1px solid #dbdbdb;
+    .feed__header{
+      display: flex;
+      align-items: center;
+      .feed__user-img {
+        margin-right: 10px;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+      }
+      .feed__user-name{
+        font-size: 18px;
+        font-weight: 500;
+      }
+    }
+    .feed__body{
+      font-size: 18px;
+      margin: 10px 0;
+      a{
+        color: $link;
+        &:hover{
+          color: $linkActive;
+        }
+      }
+    }
+    .feed__info{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .ic{
+        font-size: 16px;
+        color: #7e7e7e;
+      }
+    }
+  }
+}
+.user{
+  text-align: center;
+  .user__img {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    display: block;
+  }
+}
+.page{
+  .page__content{
+    .page__head{
+      display: flex;
+      align-items: center;
+      .page__user-img{
+        margin-right: 10px;
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+      }
+      .page__user-items {
+        display: block;
+        margin: 7px 0;
+      }
+      .page__user-info{
+        .page__date {
+          font-size: 80%;
+          color: #827d7d;
+          .ic-clock {
+            margin: -3px -10px -3px -7px;
+          }
+        }
+      }
+    }
+    .page__quote{
+      font-size: 24px;
+      font-weight: 100;
+    }
+  }
+  .page__comments{
+
+  }
+}
+.star-block {
+  padding: 25px 0;
+  .article-rate {
+    cursor: pointer;
+    top: 3px;
+    font-size: 22px;
+    position: relative;
+    margin-right: -5px;
+    color: $main;
+  }
+  .rate-end {
+    font-size: 14px;
+    color: $gray;
+  }
+}
+
+.copyright {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -8,7 +8,6 @@
 
 namespace common\components;
 
-
 use Yii;
 
 class User extends \yii\web\User
@@ -33,7 +32,7 @@ class User extends \yii\web\User
     {
         return $this->getModel() ? $this->getModel()->name : '';
     }
-    
+
     public function getRoles()
     {
         return Yii::$app->authManager->getRolesByUser( $this->id );
@@ -42,6 +41,63 @@ class User extends \yii\web\User
     public function getStatus()
     {
         return $this->getModel() ? $this->getModel()->status : \common\models\User::STATUS_INACTIVE;
+    }
+
+    public function refreshTimeArticle()
+    {
+        $model = $this->getModel();
+        $model->touch('time_article');
+        $model->updateAttributes(['time_article']);
+    }
+
+    public function setRate($entity, $id, $rate)
+    {
+        if ($this->isGuest) {
+            return false;
+        }
+
+        $model = $this->getModel();
+
+        $rates = unserialize($model->rates);
+
+        if (!isset($rates[$entity][$id])) {
+            $rates[$entity][$id] = $rate;
+        }
+
+        $model->rates = serialize($rates);
+        $model->updateAttributes(['rates']);
+
+        return true;
+    }
+
+    /**
+     * @return string
+     */
+
+    public function hasRate($entity, $id)
+    {
+        if ($this->isGuest) {
+            return false;
+        }
+
+        $model = $this->getModel();
+
+        $rates = unserialize($model->rates);
+
+        return isset($rates[$entity][$id]);
+    }
+
+    public function getRate($entity, $id)
+    {
+        if ($this->isGuest) {
+            return null;
+        }
+
+        $model = $this->getModel();
+
+        $rates = unserialize($model->rates);
+
+        return @$rates[$entity][$id] ?: false;
     }
 
     public function superUser(){

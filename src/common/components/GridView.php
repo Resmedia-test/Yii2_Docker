@@ -1,15 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: artemshmanovsky
- * Date: 29.04.15
- * Time: 13:03
- */
 
 namespace common\components;
 
 use Yii;
-use yii\helpers\Html;
 use yii\helpers\Url;
 
 

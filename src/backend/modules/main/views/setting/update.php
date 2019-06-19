@@ -1,6 +1,6 @@
 <?php
 
-use backend\widgets\CKEditor;
+use dosamigos\ckeditor\CKEditor;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\widgets\SwitchInput;
@@ -8,7 +8,7 @@ use kartik\widgets\SwitchInput;
 /* @var $this yii\web\View */
 /* @var $model common\models\Setting */
 
-$this->title = $model->isNewRecord ? "Создание настройки" : 'Обновление настройки: '.$model->name;
+$this->title = $model->isNewRecord ? "Создание настройки" : 'Обновление настройки: ' . $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Settings', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';
@@ -21,9 +21,9 @@ $this->params['breadcrumbs'][] = 'Update';
     'enableAjaxValidation' => true,
 ]); ?>
     <div class="modal-body">
-        <?= $form->field($model, 'name')->textInput(['maxlength' => 100])?>
+        <?= $form->field($model, 'name')->textInput(['maxlength' => 100]) ?>
 
-        <?= ($model->isNewRecord) ? $form->field($model, 'code')->textInput(['maxlength' => 50]): $form->field($model, 'code')->textInput(['id' => 'disabledInput', 'disabled'=>'disabled'])?>
+        <?= ($model->isNewRecord) ? $form->field($model, 'code')->textInput(['maxlength' => 50]) : $form->field($model, 'code')->textInput(['id' => 'disabledInput', 'disabled' => 'disabled']) ?>
 
         <?php if ($model->isNewRecord): ?>
             <h4>Перед созданием настройки определите тип поля</h4>
@@ -31,11 +31,12 @@ $this->params['breadcrumbs'][] = 'Update';
 
             <?php if ($model->getElement() == 'text'): ?>
 
-                <?= $form->field($model, 'value')->input(['maxlength' => 350]); ?>
+                <?= $form->field($model, 'value')->textInput(); ?>
 
             <?php elseif ($model->getElement() == 'editor'): ?>
 
-                <?= $form->field($model, 'value', ['options' => ['class' => 'form-group']])->widget(CKEditor::class, [
+                <?= $form->field($model, 'full_desc', ['options' => ['class' => 'form-group']])
+                    ->widget(CKEditor::class, [
                     'id' => 'content',
                     'preset' => 'custom',
                     'kcfinder' => true,
@@ -55,7 +56,13 @@ $this->params['breadcrumbs'][] = 'Update';
         <?php endif; ?>
 
 
-        <?=($model->isNewRecord) ? $form->field($model, 'element')->dropDownList([ 'text' => 'Text', 'textarea' => 'Textarea', 'editor' => 'Editor', ]) : '' ?>
+        <?= ($model->isNewRecord) ?
+            $form->field($model, 'element')
+                ->dropDownList([
+                    'text' => 'Text',
+                    'textarea' => 'Textarea',
+                    'editor' => 'Editor',
+                    ]) : '' ?>
 
         <?= $form->field($model, 'status')->widget(SwitchInput::class, [
             'pluginOptions' => [

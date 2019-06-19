@@ -3,9 +3,6 @@
 # yii console command
 /yii
 
-# phpstorm project files
-.idea
-
 # netbeans project files
 nbproject
 
@@ -31,4 +28,3 @@ phpunit.phar
 # local phpunit config
 /phpunit.xml
 /composer.lock
-/frontend/web/css/main.scss

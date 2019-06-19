@@ -75,15 +75,15 @@ class Section extends \yii\db\ActiveRecord
     {
         return [
             'MetaTag' => [
-                'class' => MetaTagBehavior::className(),
+                'class' => MetaTagBehavior::class,
             ],
             'TimeStamp' => [
-                'class' => TimestampBehavior::className(),
+                'class' => TimestampBehavior::class,
                 'createdAtAttribute' => 'time_update',
                 'updatedAtAttribute' => 'time_update',
             ],
             'sitemap' => [
-                'class' => SitemapBehavior::className(),
+                'class' => SitemapBehavior::class,
                 'dataClosure' => function ($model) {
                     return [
                         'loc' => Url::to($model->url, true),

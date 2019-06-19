@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = 'Поиск по сайту';
 
 ?>
 
-<div class="col-lg-12">
+<div class="container">
     <h1>Результаты поиска по запросу: <?= Html::encode($query) ?> </h1>
     <section id="search-page">
         <?= GridView::widget([
@@ -37,12 +37,13 @@ $this->params['breadcrumbs'][] = 'Поиск по сайту';
                     'label' => false,
                 ],
             ],
+            'tableOptions' => ['class' => 'table-hover'],
             'pager' => [
                 'options' => ['class' => 'pages'],
-                'prevPageLabel' => '<i class="on on-chevron-left"></i>',
-                'nextPageLabel' => '<i class="on on-chevron-right"></i>',
-                'firstPageLabel' => '<i class="on on-step-backward"></i>',
-                'lastPageLabel' => '<i class="on on-step-forward"></i>',
+                'prevPageLabel' => '<i class="ic ic-chevron-left"></i>',
+                'nextPageLabel' => '<i class="ic ic-chevron-right"></i>',
+                'firstPageLabel' => '<i class="ic ic-step-backward"></i>',
+                'lastPageLabel' => '<i class="ic ic-step-forward"></i>',
             ],
             'summary' => false,
         ]);

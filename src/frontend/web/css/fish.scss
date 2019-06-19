@@ -1,0 +1,167 @@
+//Fonts
+
+@font-face {
+  font-family: 'Open Sans';
+  src: local('Open Sans'), local('OpenSans'),
+       url('opensans.woff2') format('woff2'),
+       url('opensans.woff') format('woff'),
+       url('opensans.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Open Sans';
+  src: local('Open Sans Italic'),
+       local('OpenSans-Italic'),
+       url('opensansitalic.woff2') format('woff2'),
+       url('opensansitalic.woff') format('woff'),
+       url('opensansitalic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Open Sans';
+  src: local('Open Sans Bold'),
+       local('OpenSans-Bold'),
+       url('opensansbold.woff2') format('woff2'),
+       url('opensansbold.woff') format('woff'),
+       url('opensansbold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Open Sans';
+  src: local('Open Sans Bold Italic'),
+       local('OpenSans-BoldItalic'),
+       url('opensansbolditalic.woff2') format('woff2'),
+       url('opensansbolditalic.woff') format('woff'),
+       url('opensansbolditalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'ic';
+  src: url('fonts/ic.eot?dfpy1o');
+  src: url('fonts/ic.eot?dfpy1o#iefix') format('embedded-opentype'),
+       url('fonts/ic.ttf?dfpy1o') format('truetype'),
+       url('fonts/ic.woff?dfpy1o') format('woff'),
+       url('fonts/ic.svg?dfpy1o#ic') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+.ic {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'ic', serif !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Colors
+$main: #242d42;
+$blueDark: #2c3c61;
+$blue: #446ed1;
+$grayDark: #d1d7e0;
+$gray: #e7ebf3;
+$grayLight: #eef1f6;
+$green: #47a670;
+$red: #fc4d66;
+$gold: #eabb3b;
+$brown: #b4a38c;
+$silver: #a3acc2;
+
+// Icons
+
+.ic-arrow-down:before {
+  content: "\e900";
+}
+.ic-search-big:before {
+  content: "\e901";
+}
+.ic-burger:before {
+  content: "\e902";
+}
+.ic-direction:before {
+  content: "\e903";
+}
+.ic-ok:before {
+  content: "\e904";
+}
+.ic-close:before {
+  content: "\e905";
+}
+.ic-hart-full:before {
+  content: "\e906";
+}
+.ic-hart-empty:before {
+  content: "\e907";
+}
+.ic-cart:before {
+  content: "\e908";
+}
+.ic-location:before {
+  content: "\e909";
+}
+.star:before {
+  content: "\e90a";
+}
+.ic-list:before {
+  content: "\e90b";
+}
+
+// Main
+
+body{
+  font-family: 'Open Sans', serif !important;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 1.5;
+  color: $main;
+}
+
+h1, .h1{
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 1.29;
+}
+h2, .h2{
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 1.36;
+}
+h3, .h3{
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.44;
+}
+h4, .h4{
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+h5, .h5{
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.43;
+}
+
+.p0{
+  font-size: 18px;
+  line-height: 1.44;
+}
+.p2{
+  font-size: 14px;
+  line-height: 1.43;
+}
+.p3{
+  font-size: 12px;
+  line-height: 1.5;
+}
+

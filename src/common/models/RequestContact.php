@@ -103,18 +103,19 @@ class RequestContact extends ActiveRecord
 
     public function sendEmail()
     {
+        $main_name = Setting::findOne(['code' => 'site_name', 'status' => 1]);
         //send to user
         Yii::$app->mailer->compose(['html' => 'notifyUser-html'], ['model' => $this])
-            ->setFrom(['post@' . $_SERVER['HTTP_HOST'] => 'TestSite'])
+            ->setFrom([Yii::$app->params['senderEmail'] => $main_name->value ?: 'Название сайта',])
             ->setTo($this->email)
-            ->setSubject('Уведомление с сайта TestSite')
+            ->setSubject('Уведомление с сайта ' . $main_name->value ?: 'Название сайта')
             ->send();
 
         //send to admin
         Yii::$app->mailer->compose(['html' => 'notifyModerator-html'], ['model' => $this])
             ->setFrom([$this->email => $this->name])
             ->setTo(Yii::$app->params['adminEmail'])
-            ->setSubject('Сообщение с сайта TestSite')
+            ->setSubject('Сообщение с сайта ' . $main_name->value ?: 'Название сайта')
             ->send();
     }
 }

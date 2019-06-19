@@ -20,7 +20,7 @@ class AppAsset extends AssetBundle
 
     public $css = [
         'css/toastr.min.css',
-        'css/site.css?v_1222',
+        'css/site.css?v_121',
         'css/chosen.css',
     ];
 
@@ -34,7 +34,7 @@ class AppAsset extends AssetBundle
         'yii\web\JqueryAsset',
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
-        'common\assets\FontAwesomeAsset',
+        //'common\assets\FontAwesomeAsset',
     ];
     public $jsOptions = array(
         'position' => \yii\web\View::POS_HEAD

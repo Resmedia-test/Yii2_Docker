@@ -1,8 +1,8 @@
 <?php
 
-use app\components\MistakeWidget;
 use common\models\Menu;
 use common\models\Setting;
+use common\models\User;
 use yii\bootstrap\Modal;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -14,7 +14,6 @@ use frontend\widgets\Alert;
 /* @var $content string */
 
 AppAsset::register($this);
-
 $site_name = Setting::findOne(['code' => 'site_name', 'status' => 1]);
 $copy = Setting::findOne(['code' => 'copy', 'status' => 1]);
 $rules = Setting::findOne(['code' => 'rules', 'status' => 1]);
@@ -44,15 +43,15 @@ if (isset(Yii::$app->controller->model)) {
 
         <?php $this->head() ?>
 
-        <meta name="author" content="TestSite">
         <meta property="og:img" content="<?= Url::to(Yii::$app->controller->image, true) ?>">
         <meta property="og:image" content="<?= Url::to(Yii::$app->controller->image, true) ?>">
-        <meta property="og:site_name" content="TestSite">
+        <meta property="og:site_name" content="<?= $site_name->value ?>">
         <meta property="og:type" content="website">
 
-        <link rel="shortcut icon"
-              href="<?= 'http' . (empty($_SERVER['HTTPS']) ? '' : 's') . '://' . $_SERVER['SERVER_NAME']; ?>/img/favicon.ico"
-              type="image/x-icon"
+        <link
+                rel="shortcut icon"
+                href="<?= 'http' . (empty($_SERVER['HTTPS']) ? '' : 's') . '://' . $_SERVER['SERVER_NAME']; ?>/img/favicon.ico"
+                type="image/x-icon"
         />
         <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
         <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon-76x76.png">
@@ -65,99 +64,137 @@ if (isset(Yii::$app->controller->model)) {
     <?php $this->beginBody() ?>
     <body>
 
-    <header class="header">
-        <nav class="navbar navbar-defaul">
-            <div class="container">
-                <div class="navbar-header">
-                    <button
-                            type="button"
-                            class="navbar-toggle collapsed"
-                            data-toggle="collapse"
-                            data-target="#navbar"
-                            aria-expanded="false"
-                            aria-controls="navbar"
-                    >
-                        <span></span>
-                    </button>
+    <div class="wrapper">
+        <div class="content">
+            <header class="header">
+                <nav class="navbar navbar-defaul">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <button
+                                    type="button"
+                                    class="navbar-toggle collapsed"
+                                    data-toggle="collapse"
+                                    data-target="#navbar"
+                                    aria-expanded="false"
+                                    aria-controls="navbar"
+                            >
+                                <span></span>
+                            </button>
 
-                    <a class="navbar-brand" href="/">
-                        <?= $site_name->value ?: '' ?>
-                    </a>
-                </div>
+                            <a class="navbar-brand" href="/">
+                                <?= $site_name->value ?: '' ?>
+                            </a>
+                        </div>
 
-                <div id="navbar" class="collapse navbar-collapse">
-                    <?php
-                    $menu = Menu::find()->where(['name' => 'main'])->one();
-                    echo \yii\widgets\Menu::widget([
-                        'options' => ['class' => 'nav navbar-nav'],
-                        'items' => $menu->itemsArray,
-                        'encodeLabels' => false,
-                    ]);
-                    ?>
-                </div>
-            </div>
-        </nav>
+                        <?php if (Yii::$app->user->isGuest): ?>
 
-        <div class="container">
-            <form id="search-form-top" action="/search" method="GET" onsubmit="search()">
+                            <a href="/login" class="modalForm btn navbar-btn navbar-right">
+                                Войти
+                            </a>
+
+                        <?php else: ?>
+
+                            <ul class="navbar-right navbar-nav">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle cabinet" data-toggle="dropdown" role="button">
+                                        <img class="photo-circle" src="<?= Yii::$app->user->model->preview ?>">
+                                        <span class="hidden-md"><?= Yii::$app->user->model->getFullName() ?> <span
+                                                    class="caret"></span></span>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="/account"><i class="ic ic-vcard"></i> Мой профиль</a></li>
+
+                                        <?php if (!Yii::$app->user->isGuest): ?>
+
+                                            <?php if (Yii::$app->user->superUser()) { ?>
+                                                <li>
+                                                    <a target="_blank" href="<?= Yii::$app->params['domainBackend'] ?>">
+                                                        <i class="ic ic-adjust-alt"></i>
+                                                        Панель
+                                                    </a>
+                                                </li>
+                                            <?php }
+                                        ; ?>
+
+                                            <?php if (Yii::$app->user->getStatus() == User::STATUS_ACTIVE): ?>
+                                                <li>
+                                                    <a class="" href="/account/articles"><i class="ic ic-article"></i> Мои
+                                                        статьи</a>
+                                                </li>
+                                            <?php endif; ?>
+
+                                        <?php endif; ?>
+                                        <li><a href="/logout"><i class="ic ic-exit"></i> Выход</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                        <?php endif; ?>
+
+                        <div id="navbar" class="collapse navbar-collapse">
+                            <?php
+                            $menu = Menu::find()->where(['name' => 'main'])->one();
+                            echo \yii\widgets\Menu::widget([
+                                'options' => ['class' => 'nav navbar-nav'],
+                                'items' => $menu->itemsArray,
+                                'encodeLabels' => false,
+                            ]);
+                            ?>
+                        </div>
+                    </div>
+                </nav>
+
+                <div class="container">
+                    <form id="search-form-top" action="/search" method="GET" onsubmit="search()">
             <span class="input-group">
                 <input type="text" class="form-control" name="query" placeholder="Введите запрос">
                 <span class="input-group-btn">
                     <?= Html::submitButton('Искать', ['class' => 'btn btn-default']) ?>
                 </span>
             </span>
-            </form>
-            <div class="breadcrumbs" itemprop="breadcrumb">
-                <?= Breadcrumbs::widget([
-                    'homeLink' => [
-                        'label' => Yii::$app->name,
-                        'url' => Yii::$app->homeUrl,
-                    ],
-                    'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-                ]) ?>
-            </div>
-        </div>
-    </header>
-
-    <?= Alert::widget() ?>
-    <?= $content ?>
-
-    <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
-        <div class="container">
-            <div class="footer__content">
-                <div class="row" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
-                    <?php
-                    $menu = Menu::find()->where(['name' => 'footer'])->one();
-                    echo \yii\widgets\Menu::widget([
-                        'options' => ['class' => 'col-md-8'],
-                        'items' => $menu->itemsArray,
-                        'encodeLabels' => false,
-                    ]);
-                    ?>
-                </div>
-            </div>
-
-            <div class="copyright">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="hidden-xs">
-                            <?= MistakeWidget::widget(); ?>
-                        </div>
+                    </form>
+                    <div class="breadcrumbs" itemprop="breadcrumb">
+                        <?= Breadcrumbs::widget([
+                            'homeLink' => [
+                                'label' => Yii::$app->name,
+                                'url' => Yii::$app->homeUrl,
+                            ],
+                            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+                        ]) ?>
                     </div>
-                    <div class="col-md-8">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <?= @$copy->value ?: '' ?>
-                            </div>
-                            <div class="col-md-12 copyright__rules">
-                                <?= @$rules->value ?: '' ?>
-                            </div>
-                        </div>
+                </div>
+            </header>
+
+            <?= Alert::widget() ?>
+            <?= $content ?>
+        </div>
+
+        <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+            <div class="container">
+                <div class="footer__content">
+                    <div class="row" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
+                        <?php
+                        $menu = Menu::find()->where(['name' => 'footer'])->one();
+                        echo \yii\widgets\Menu::widget([
+                            'options' => ['class' => 'col-md-8'],
+                            'items' => $menu->itemsArray,
+                            'encodeLabels' => false,
+                        ]);
+                        ?>
+                    </div>
+                </div>
+
+                <div class="copyright">
+                    <div class="copyright__name">
+                        © <?= @$copy->value ?: '' ?>, <?= date('Y'); ?>
+                    </div>
+                    <div class="copyright__rules">
+                        <?= @$rules->value ?: '' ?>
                     </div>
                 </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
     <?php
     Modal::begin([
@@ -174,15 +211,6 @@ if (isset(Yii::$app->controller->model)) {
     <?= @$google->value ?: '' ?>
     <?php $this->endBody() ?>
 
-    <script src="/js/main.js?5"></script>
-
-    <!--TODO Make it normal component with listenEvent-->
-    <script type="text/javascript" src="/js/mistake.js"></script>
-    <script type="text/javascript">
-        (function (e) {
-            jQuery(document).textmistake({});
-        })(jQuery)
-    </script>
     </body>
     </html>
 

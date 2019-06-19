@@ -1,5 +1,6 @@
 <?php
 use backend\assets\AppAsset;
+use common\models\Setting;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -11,6 +12,7 @@ use yii\widgets\Pjax;
 /* @var $content string */
 
 AppAsset::register($this);
+$main_name = Setting::findOne(['code' => 'site_name', 'status' => 1]);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -26,7 +28,7 @@ AppAsset::register($this);
     <?php $this->beginBody() ?>
     <?php
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => Yii::$app->name .' '. $main_name->value ?: 'Название сайта',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-default navbar-static-top',
@@ -53,10 +55,8 @@ AppAsset::register($this);
     NavBar::end();
     ?>
 
-    <div class="content">
-        <div class="row">
-            <?= $content ?>
-        </div>
+    <div class="container">
+        <?= $content ?>
     </div>
 
 

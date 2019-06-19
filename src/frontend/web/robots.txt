@@ -1,14 +1,11 @@
 User-agent: *
-Disallow: /dialog
 Disallow: /account
 
 User-agent: Yandex
-Disallow: /dialog
 Disallow: /account
-Host: http://testSite.zu
+Host: http://testsite.docker
 
 User-agent: Googlebot
-Disallow: /dialog
 Disallow: /account
 
-Sitemap: http://pthb.ru/sitemap.xml
+Sitemap: http://testsite.docker/sitemap.xml

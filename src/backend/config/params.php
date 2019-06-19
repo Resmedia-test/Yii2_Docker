@@ -1,9 +1,13 @@
 <?php
+
 return [
     'adminEmail' => 'support@testsite.docker',
-    'senderEmail' => 'post@testsite.docker',
+    // INFO senderEmail - email that send all letters, must match with settings for sending emails шт main/mailer
+    'senderEmail' => 'test@resmedia.ru',
     'domainFrontend' => 'http://testsite.docker',
-    'urlToCke' => empty(Yii::$app->request->hostInfo) ? '/scripts/config-cke.js?v6' : Yii::$app->request->hostInfo . '/scripts/config-cke.js?v6',
+    'domainBackend' => 'http://office.testsite.docker',
+    'urlToCke' => empty(Yii::$app->request->hostInfo) ? '/scripts/config-cke.js?v7' : Yii::$app->request->hostInfo . '/scripts/config-cke.js?v7',
+    'urlToSyncTranslit' => empty(Yii::$app->request->hostInfo) ? '/scripts/jquery.synctranslit.js?v8' : Yii::$app->request->hostInfo . '/scripts/jquery.synctranslit.js?v1',
     'kcfOptions' => [
         'uploadURL' => '@web/uploads/',
         'uploadDir'=> Yii::getAlias('@frontend/web/uploads/'),

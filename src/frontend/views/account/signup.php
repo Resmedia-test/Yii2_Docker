@@ -6,7 +6,7 @@ use yii\widgets\ActiveForm;
 /* @var $this yii\web\View */
 ?>
 
-    <h4><i class="name on on-nameplate"></i> Регистрация</h4>
+    <h4><i class="name ic ic-nameplate"></i> Регистрация</h4>
 
 
 <?php $form = ActiveForm::begin([
@@ -17,6 +17,11 @@ use yii\widgets\ActiveForm;
     <div class="modal-body">
         <?= $form->field($model, 'name', ['inputOptions' => [
             'placeholder' => 'Имя',
+            'class' => 'form-control',
+        ]])->label(false) ?>
+
+        <?= $form->field($model, 'lastname', ['inputOptions' => [
+            'placeholder' => 'Фамилия',
             'class' => 'form-control',
         ]])->label(false) ?>
 
@@ -49,7 +54,25 @@ use yii\widgets\ActiveForm;
     </div>
 
 <?php ActiveForm::end(); ?>
+<script type="text/javascript" src="/js/pass.js"></script>
 <script type="text/javascript">
+    $(function() {
+        $('.password').pstrength();
+    });
+
+    $(function() {
+        $('#user-password').password().on('show.bs.password', function(e) {
+            $('#methods').prop('checked', true);
+        }).on('hide.bs.password', function(e) {
+            $('#methods').prop('checked', false);
+        });
+        $('#methods').click(function() {
+            $('#user-password').password('toggle');
+        });
+        $("#user-passwordRepeat").bind('paste', function() { return false;});
+
+    });
+
     $('#modal').find('.modal-dialog').data('class', $('#modal').find('.modal-dialog').attr('class'));
     $('#modal').find('.modal-dialog').attr('class', 'modal-dialog modal-sm');
 </script>

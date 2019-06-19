@@ -6,18 +6,11 @@ use yii\helpers\Url;
 
 $menuItems = [
     [
-        'label' => '<i class="glyphicon glyphicon-book"></i><span class="sm-hidden">Библиотека</span>',
+        'label' => '<i class="glyphicon glyphicon-edit"></i><span class="sm-hidden">Публикации</span>',
         'encode' => false,
-        'url' => '/library',
-        'active' => Yii::$app->controller->module->id == "library",
-        'visible' => Yii::$app->user->can('backend.library'),
-    ],
-    [
-        'label' => '<i class="glyphicon glyphicon-file"></i><span class="sm-hidden">Контент</span>',
-        'encode' => false,
-        'url' => '/content',
-        'active' => Yii::$app->controller->module->id == "content" && Yii::$app->controller->id !== "order",
-        'visible' => Yii::$app->user->can('backend.content'),
+        'url' => '/articles',
+        'active' => Yii::$app->controller->module->id == "article",
+        'visible' => Yii::$app->user->can('backend.articles'),
     ],
     [
         'label' => '<i class="glyphicon glyphicon-user"></i><span class="sm-hidden">Пользователи</span>',
@@ -27,11 +20,25 @@ $menuItems = [
         'visible' => Yii::$app->user->can('backend.users'),
     ],
     [
+        'label' => '<i class="glyphicon glyphicon-file"></i><span class="sm-hidden">Контент</span>',
+        'encode' => false,
+        'url' => '/content',
+        'active' => Yii::$app->controller->module->id == "content" && Yii::$app->controller->id !== "order",
+        'visible' => Yii::$app->user->can('backend.content'),
+    ],
+    [
         'label' => '<i class="glyphicon glyphicon-envelope"></i><span class="sm-hidden">Запросы</span>',
         'encode' => false,
         'url' => '/requests',
         'active' => Yii::$app->controller->module->id == "requests",
         'visible' => Yii::$app->user->can('backend.requests'),
+    ],
+    [
+        'label' => '<i class="glyphicon glyphicon-comment"></i><span class="sm-hidden">Комментарии</span>',
+        'encode' => false,
+        'url' => '/comments',
+        'active' => Yii::$app->controller->module->id == "comments",
+        'visible' => Yii::$app->user->can('backend.comments'),
     ],
 ];
 

@@ -678,10 +678,6 @@ img.logo {
     background-color: #23475f;
     color: #20ba00;
 }
-.navbar-default .navbar-brand,
-.navbar-default .navbar-nav > li > a {
-    color: #2f2f2f !important;
-}
 .nav-pills > li > a {
     border-radius: 2px;
 }
@@ -740,9 +736,17 @@ i#switch-menu {
 .columnSidebar>div{
     position: fixed;
 }
+.navbar-default {
+    background: #035995;
+    border-color: #035995;
+}
+.navbar-default .navbar-brand,
+.navbar-default .navbar-nav > li > a {
+    color: #fff !important;
+}
 .leftColumnContent {
     position: absolute;
-    background-color: #2f2f2f;
+    background-color: #045996;
     float: left;
     min-width: 200px;
     z-index: 1000;
@@ -750,9 +754,9 @@ i#switch-menu {
     display: inline-block;
     min-height: 100vh;
     height: 100%;
-    -webkit-box-shadow: 3px 0 7px -3px rgba(50, 50, 50, 0.75);
-    -moz-box-shadow:    3px 0 7px -3px rgba(50, 50, 50, 0.75);
-    box-shadow:         3px 0 7px -3px rgba(50, 50, 50, 0.75);
+    -webkit-box-shadow: 3px 0 7px -3px rgba(18, 31, 50, 0.75);
+    -moz-box-shadow:    3px 0 7px -3px rgba(14, 28, 50, 0.75);
+    box-shadow:         3px 0 7px -3px rgba(13, 31, 50, 0.75);
 }
 .leftColumnContent .nav > li > a {
     font-size: 18px;
@@ -800,7 +804,7 @@ span.sm-hidden {
     white-space: pre;
     z-index: 100;
     color: #fdfdfd;
-    background: #2f2f2f;
+    background: #033767;
     -webkit-box-shadow: 3px 0 7px -3px rgba(50, 50, 50, 0.75);
     -moz-box-shadow:    3px 0 7px -3px rgba(50, 50, 50, 0.75);
     box-shadow:         3px 0 7px -3px rgba(50, 50, 50, 0.75);
@@ -1076,7 +1080,7 @@ i.glyphicon.glyphicon-question-sign{
 }
 .modal-footer {
     padding: 15px;
-    text-align: right;
+    text-align: left;
     border-top: 0;
 }
 

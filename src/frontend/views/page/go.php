@@ -1,20 +1,21 @@
 <?php
 
+use common\models\Setting;
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
 use common\components\helpers\StringHelper;
+$site_name = Setting::findOne(['code' => 'site_name', 'status' => 1]);
 
 $this->title = "Внимание!"
 ?>
 
-<h4 class="name"><i class="on on-exclamation-sign"></i> <?= Html::encode($this->title) ?></h4>
+<h4 class="name"><i class="ic ic-exclamation-sign"></i> <?= Html::encode($this->title) ?></h4>
 
 <div class="modal-body">
     <p>
         Вы нажали на ссылку с <b>URL: <?=StringHelper::truncate($url, 30)?></b> оставленную в комментарии одним из пользователей ресурса.
     </p>
     <p>
-      Интернет издание <span class="name"><b>ON!</b></span> не несет какой либо ответсвенности за ресурс <?=StringHelper::truncate($url, 20)?>. Вы переходите по ссылке полностью на свой страх и риск.
+      <?= $site_name->value ?> не несет какой либо ответсвенности за ресурс <?=StringHelper::truncate($url, 20)?>. Вы переходите по ссылке полностью на свой страх и риск.
     </p>
     <p class="text-center">
         Ссылка будет открыта в новой вкладке.<br>
@@ -31,10 +32,10 @@ $this->title = "Внимание!"
     $('#modal').find('.modal-dialog').data('class', $('#modal').find('.modal-dialog').attr('class'));
     $('#modal').find('.modal-dialog').attr('class', 'modal-dialog modal-md');
 
-    var loc = "<?php echo $url; ?>";
+    let loc = "<?php echo $url; ?>";
 
     $("a.redirLink").on("click",function(){
-        var win = window.open(loc, '_blank');
+        let win = window.open(loc, '_blank');
         win.focus(loc);
         $('#modal').modal('hide');
         return false;

@@ -8,6 +8,10 @@ use yii\db\Migration;
  */
 class m190422_084305_add_fields_tables extends Migration
 {
+    public $settings = "{{%settings}}";
+    public $pages = "{{%pages}}";
+    public $menus_links = "{{%menus_links}}";
+    public $menus = "{{%menus}}";
     /**
      * {@inheritdoc}
      */
@@ -20,7 +24,7 @@ class m190422_084305_add_fields_tables extends Migration
             'name' => 'Admin',
             'status' => User::STATUS_ACTIVE,
             'password_hash' => '$2y$13$.wzhXxRPDah7yE.gTlby..Jrv/p.u/ScLJsJbWZb9LK4wFqGYIDW6',
-            'email' => 'test@test.ru',
+            'email' => 'test@testsite.docker',
         ]);
 
         $this->insert('auth_assignments', [
@@ -29,7 +33,7 @@ class m190422_084305_add_fields_tables extends Migration
             'created_at' => time(),
         ]);
 
-        $this->insert('pages', [
+        $this->insert($this->pages, [
             'url' => '/',
             'title' => 'Главная',
             'content' => '',
@@ -37,7 +41,7 @@ class m190422_084305_add_fields_tables extends Migration
             'status' => 1
         ]);
 
-        $this->insert('pages', [
+        $this->insert($this->pages, [
             'url' => '/contacts',
             'title' => 'Контакты',
             'content' => '',
@@ -45,7 +49,7 @@ class m190422_084305_add_fields_tables extends Migration
             'status' => 1
         ]);
 
-        $this->insert('pages', [
+        $this->insert($this->pages, [
             'url' => '/about',
             'title' => 'О сайте',
             'content' => '',
@@ -53,15 +57,7 @@ class m190422_084305_add_fields_tables extends Migration
             'status' => 1
         ]);
 
-        $this->insert('pages', [
-            'url' => '/handbook',
-            'title' => 'Библиотека',
-            'content' => '',
-            'time_update' => time(),
-            'status' => 1
-        ]);
-
-        $this->insert('menus', [
+        $this->insert($this->menus, [
             'id' => 1,
             'name' => 'main',
             'title' => 'Главное',
@@ -69,7 +65,7 @@ class m190422_084305_add_fields_tables extends Migration
             'status' => 1
         ]);
 
-        $this->insert('menus', [
+        $this->insert($this->menus, [
             'id' => 2,
             'name' => 'footer',
             'title' => 'Нижнее',
@@ -77,7 +73,7 @@ class m190422_084305_add_fields_tables extends Migration
             'status' => 1
         ]);
 
-        $this->insert('menus_links', [
+        $this->insert($this->menus_links, [
             'menu_id' => 1,
             'parent_id' => 0,
             'class' => '',
@@ -87,7 +83,7 @@ class m190422_084305_add_fields_tables extends Migration
             'status' => 1
         ]);
 
-        $this->insert('menus_links', [
+        $this->insert($this->menus_links, [
             'menu_id' => 1,
             'parent_id' => 0,
             'class' => '',
@@ -97,18 +93,27 @@ class m190422_084305_add_fields_tables extends Migration
             'status' => 1
         ]);
 
-        $this->insert('menus_links', [
+        $this->insert($this->menus_links, [
             'menu_id' => 1,
             'parent_id' => 0,
             'class' => '',
-            'title' => 'Справочник',
-            'url' => '/handbook',
+            'title' => 'Публикации',
+            'url' => '/articles',
             'order' => 3,
             'status' => 1
         ]);
 
-        $this->insert('settings', [
-            'module_id' => '',
+        $this->insert($this->menus_links, [
+            'menu_id' => 1,
+            'parent_id' => 0,
+            'class' => '',
+            'title' => 'Пользователи',
+            'url' => '/users',
+            'order' => 4,
+            'status' => 1
+        ]);
+
+        $this->insert($this->settings, [
             'code' => 'site_name',
             'name' => 'Название сайта',
             'value' => 'Название Сайта',
@@ -116,8 +121,23 @@ class m190422_084305_add_fields_tables extends Migration
             'status' => 1,
         ]);
 
-        $this->insert('settings', [
-            'module_id' => '',
+        $this->insert($this->settings, [
+            'code' => 'site_desc',
+            'name' => 'Описание сайта',
+            'value' => 'Сайт нацелен на реализацию...',
+            'element' => 'text',
+            'status' => 1,
+        ]);
+
+        $this->insert($this->settings, [
+            'code' => 'email_feedback',
+            'name' => 'Обратная почта для писем',
+            'value' => 'feedback@testsite.docker',
+            'element' => 'text',
+            'status' => 1,
+        ]);
+
+        $this->insert($this->settings, [
             'code' => 'copy',
             'name' => 'Копирайт',
             'value' => 'Название Сайта',
@@ -125,8 +145,23 @@ class m190422_084305_add_fields_tables extends Migration
             'status' => 1,
         ]);
 
-        $this->insert('settings', [
-            'module_id' => '',
+        $this->insert($this->settings, [
+            'code' => 'address',
+            'name' => 'Обратный адрес',
+            'value' => 'Адрес компании',
+            'element' => 'text',
+            'status' => 1,
+        ]);
+
+        $this->insert($this->settings, [
+            'code' => 'phone',
+            'name' => 'Телефон компании',
+            'value' => '+7 (000) 000-00-00',
+            'element' => 'text',
+            'status' => 1,
+        ]);
+
+        $this->insert($this->settings, [
             'code' => 'rules',
             'name' => 'Права',
             'value' => 'Все права защищены',
@@ -134,8 +169,7 @@ class m190422_084305_add_fields_tables extends Migration
             'status' => 1,
         ]);
 
-        $this->insert('settings', [
-            'module_id' => '',
+        $this->insert($this->settings, [
             'code' => 'yandex',
             'name' => 'Счетчик Яндекс',
             'value' => '',
@@ -143,14 +177,38 @@ class m190422_084305_add_fields_tables extends Migration
             'status' => 1,
         ]);
 
-        $this->insert('settings', [
-            'module_id' => '',
+        $this->insert($this->settings, [
             'code' => 'google',
             'name' => 'Счетчик Google',
             'value' => '',
             'element' => 'textarea',
             'status' => 1,
         ]);
+
+        $this->insert($this->settings, [
+            'code' => 'moderatorEmail',
+            'name' => 'Email модератора для уведомлений',
+            'value' => 'moderator@testsite.docker',
+            'element' => 'text',
+            'status' => 1,
+        ]);
+
+        $this->insert($this->settings, [
+            'code' => 'adminEmail',
+            'name' => 'Email админа для уведомлений',
+            'value' => 'admin@testsite.docker',
+            'element' => 'text',
+            'status' => 1,
+        ]);
+
+        $this->insert($this->settings, [
+            'code' => 'email_requestArticle',
+            'name' => 'Email модератора статей',
+            'value' => 'admin@testsite.docker',
+            'element' => 'text',
+            'status' => 1,
+        ]);
+
     }
 
     /**

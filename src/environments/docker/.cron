@@ -3,4 +3,15 @@ PATH=/sbin:/bin:/usr/sbin:/usr/bin
 MAILTO=root
 HOME=/
 
-
+0 0 * * *  /usr/bin/php /home/domains/dev.helpcase.ru/releases/backend/latest/yii account/delete
+*/15 * * * *  /usr/bin/php /home/domains/dev.helpcase.ru/releases/backend/latest/yii account/delete-expired-reg
+*/5 * * * *  /usr/bin/php /home/domains/dev.helpcase.ru/releases/backend/latest/yii news/publish
+*/5 * * * *  /usr/bin/php /home/domains/dev.helpcase.ru/releases/backend/latest/yii articles/publish
+*/5 * * * *  /usr/bin/php /home/domains/dev.helpcase.ru/releases/backend/latest/yii case/publish
+*/5 * * * *  /usr/bin/php /home/domains/dev.helpcase.ru/releases/backend/latest/yii news/send
+*/5 * * * *  /usr/bin/php /home/domains/dev.helpcase.ru/releases/backend/latest/yii case/send
+*/5 * * * *  /usr/bin/php /home/domains/dev.helpcase.ru/releases/backend/latest/yii push/send
+0 0 * * *  /usr/bin/php /home/domains/dev.helpcase.ru/releases/backend/latest/yii object-order/expires-notification
+0 0 * * *  /usr/bin/php /home/domains/dev.helpcase.ru/releases/backend/latest/yii service-object-link/check-expired
+0 0 * * *  /usr/bin/php /home/domains/dev.helpcase.ru/releases/backend/latest/yii service-object-link/check-expires
+*/5 * * * *  /usr/bin/php /home/domains/dev.helpcase.ru/releases/backend/latest/yii sms/delete-expired

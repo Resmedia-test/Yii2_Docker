@@ -2,12 +2,12 @@
 
 namespace frontend\controllers;
 
-use common\models\Book;
+use common\models\Article;
 use common\models\RequestContact;
 
+use common\models\User;
 use Yii;
 use yii\base\DynamicModel;
-use yii\base\ErrorException;
 use yii\data\ArrayDataProvider;
 use yii\web\NotFoundHttpException;
 use frontend\components\Controller;
@@ -125,10 +125,24 @@ class PageController extends Controller
         if ($query) {
             $model->query = $query;
 
+            $articles = Article::find()->where(['like', 'name', $model->query])
+                ->orWhere(['like', 'small_desc', $model->query])
+                ->orWhere(['like', 'full_desc', $model->query])
+                ->all();
+            foreach ($articles as $article)
+                /** @var $article \common\models\Article */
+                $data[] = [
+                    'name' => $article->name,
+                    'time_update' => Yii::$app->formatter->asDate($article->time_update, 'От dd.MM.YYYY'),
+                    'description' => $article->small_desc,
+                    'url' => $article->getUrl()
+                ];
+
             $pages = Page::find()->where(['like', 'title', $model->query])
                 ->orWhere(['like', 'content', $model->query])
                 ->all();
             foreach ($pages as $page)
+                /** @var $page \common\models\Page */
                 $data[] = [
                     'name' => $page->title,
                     'time_update' => Yii::$app->formatter->asDate($page->time_update, 'От dd.MM.YYYY'),
@@ -136,16 +150,17 @@ class PageController extends Controller
                     'url' => $page->getLink()
                 ];
 
-            $items = Book::find()->where(['like', 'name', $model->query])
-                ->orWhere(['like', 'small_desc', $model->query])
-                ->orWhere(['like', 'full_desc', $model->query])
+            $users = User::find()->where(['like', 'name', $model->query])
+                ->orWhere(['like', 'lastname', $model->query])
+                ->orWhere(['like', 'about', $model->query])
                 ->all();
-            foreach ($items as $item)
+            foreach ($users as $user)
+                /** @var $user \common\models\User */
                 $data[] = [
-                    'name' => $item->name,
-                    'time_update' => Yii::$app->formatter->asDate($item->time_update, 'От dd.MM.YYYY'),
-                    'description' => $item->description,
-                    'url' => $item->getUrl()
+                    'name' => $user->name,
+                    'time_update' => Yii::$app->formatter->asDate($user->last_login, 'От dd.MM.YYYY'),
+                    'description' => $user->about,
+                    'url' => $user->getUrl()
                 ];
         }
 

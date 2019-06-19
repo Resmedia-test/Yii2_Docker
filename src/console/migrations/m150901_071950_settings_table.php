@@ -16,7 +16,6 @@ class m150901_071950_settings_table extends Migration
 
         $this->createTable($this->tableName, [
             'id' => $this->primaryKey(),
-            'module_id' => $this->string()->notNull(),
             'code' => $this->string()->notNull(),
             'name' => $this->string()->notNull(),
             'value' => $this->text()->notNull(),

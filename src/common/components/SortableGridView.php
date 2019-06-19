@@ -7,8 +7,14 @@ use yii\helpers\Url;
 
 class SortableGridView extends \himiklab\sortablegrid\SortableGridView
 {
-    public $layout = "<div class='grid-header'>{header}\n{pageSize}</div>\n{summary}\n{items}\n{pager}\n{footer}";
+    public $layout = "
+           <div class='grid-header'>{header}\n{pageSize}</div>\n
+             {summary}\n
+             {items}\n
+             {pager}\n
+             {footer}";
 
+    public $buttons = [];
     public $sortable = false;
     public $bordered = false;
     public $pageSize = true;
@@ -99,6 +105,12 @@ class SortableGridView extends \himiklab\sortablegrid\SortableGridView
         $result .= Dropdown::widget([
             'items' => $items,
         ]);
+
+        if($this->buttons){
+            foreach ($this->buttons as $button){
+                $result .= $button;
+            };
+        }
 
         $result .= '
         </div>

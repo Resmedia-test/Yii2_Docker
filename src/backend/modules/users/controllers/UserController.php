@@ -9,6 +9,9 @@ use yii\filters\AccessControl;
 use common\models\User;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\widgets\ActiveForm;
+use zxbodya\yii2\imageAttachment\ImageAttachmentAction;
+
 
 class UserController extends ActiveController
 {
@@ -22,6 +25,13 @@ class UserController extends ActiveController
         $actions['delete']['permanent'] = false;
         $actions['delete']['attribute'] = 'status';
         $actions['delete']['value'] = User::STATUS_DELETED;
+
+        $actions['imgAttachApi'] = [
+            'class' => ImageAttachmentAction::class,
+            'types' => [
+                'user' => User::class
+            ]
+        ];
 
         unset($actions['set']);
 
@@ -41,7 +51,7 @@ class UserController extends ActiveController
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'actions' => ['index', 'delete', 'upload',  'update', 'set'],
+                        'actions' => ['index', 'delete', 'imgAttachApi', 'upload',  'update', 'set'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -50,6 +60,14 @@ class UserController extends ActiveController
         ];
     }
 
+    public function beforeRender(&$model)
+    {
+        /** @var $model \common\models\User */
+        if(!$model->isNewRecord){
+            $model->role = $model->getUserRole($model->id);
+        }
+        parent::beforeRender($model);
+    }
 
     /**
      * Updates an existing User model.
@@ -57,19 +75,20 @@ class UserController extends ActiveController
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id=null)
+    public function actionUpdate($id = null)
     {
         $this->layout = false;
 
+        /** @var ActiveRecord $model */
         $model = $this->findModel($id);
 
-        if($model->load(Yii::$app->request->post()))
+        if($id && $model->load(Yii::$app->request->post()))
         {
             Yii::$app->response->format = 'json';
 
             if (Yii::$app->request->isAjax && isset($_POST['ajax']))
             {
-                return \yii\widgets\ActiveForm::validate($model);
+                return ActiveForm::validate($model);
             }
 
             if(!empty($model->password))
@@ -102,16 +121,6 @@ class UserController extends ActiveController
         {
             $attrs = [$attr => $val];
 
-            if($attr == 'news_main')
-            {
-                $modelClass = $this->modelClass;
-                $modelClass::updateAll([$attr => 0]);
-            }
-
-            if ($attr == 'expert') {
-                $attrs['time_article'] = time();
-            }
-
             $model->updateAttributes($attrs);
         }
 
@@ -121,7 +130,12 @@ class UserController extends ActiveController
     public function afterLoadIndex(&$model)
     {
         if (empty($model->status)) {
-            $model->status = [User::STATUS_EMAIL_NC, User::STATUS_INACTIVE, User::STATUS_ACTIVE, User::STATUS_DELETED];
+            $model->status = [
+                User::STATUS_EMAIL_NC,
+                User::STATUS_INACTIVE,
+                User::STATUS_ACTIVE,
+                User::STATUS_DELETED,
+            ];
         }
     }
 }

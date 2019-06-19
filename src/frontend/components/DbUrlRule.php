@@ -1,14 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: resmedia
- * Date: 23.03.15
- * Time: 18:12
- */
 
 namespace frontend\components;
 
-use common\models\Book;
 use common\models\Section;
 use Yii;
 use yii\base\BaseObject;
@@ -55,7 +48,7 @@ class DbUrlRule extends BaseObject implements UrlRuleInterface
         }, 0, $dependency);
 
         if (isset($section)) {
-            $module = '';//!empty($section->module) ? $section->module.'/' : '';
+            $module = '';
             $controller = $section->controller . '/';
             $action = $section->action;
             $params = [];
@@ -68,34 +61,6 @@ class DbUrlRule extends BaseObject implements UrlRuleInterface
             }
 
             $params['section_id'] = $section->id;
-
-            if (strpos(Yii::$app->request->getPathInfo(), '/')) {
-                $dependency = new DbDependency(['sql' => 'SELECT max(time_update) from books']);
-
-                $model = Book::getDb()->cache(function ($db) {
-                    $pathInfo = Yii::$app->request->getPathInfo();
-                    $pathInfo = strrev($pathInfo);
-                    //$url = substr($pathInfo, strpos($pathInfo, '/')+1, strlen($pathInfo)-strpos($pathInfo, '/'));
-                    $url = substr($pathInfo, 0, strpos($pathInfo, '/'));
-                    $url = strrev($url);
-
-                    $model = Book::find()->where(['like', 'url', $pathInfo]);
-
-                    if (is_integer($url)) {
-                        $model->orWhere(['id' => $url]);
-                    }
-
-                    return $model->one();
-                }, 0, $dependency);
-
-                if (isset($model)) {
-                    $action = 'view';
-                    $params['url'] = !empty($model->url) ? $model->url : null;
-                    $params['id'] = !empty($model->id) && empty($model->url) ? $model->id : null;
-                } else {
-                    return false;
-                }
-            }
 
             $route = $module . $controller . $action;
 

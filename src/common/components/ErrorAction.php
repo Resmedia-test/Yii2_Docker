@@ -18,11 +18,12 @@ class ErrorAction extends \yii\web\ErrorAction
             if($code == 404)
             {
                 /*$emailNotify404 = Setting::find()->where(['code' => self::SETTING_EMAIL_NOTIFY_404])->one();
+                 $main_name = Setting::findOne(['code' => 'site_name', 'status' => 1]);
 
                 if(isset($emailNotify404))
                 {
                     $email = Yii::$app->mailer->compose(['html' => 'notify404Admin-html'], ['exception' => $exception]);
-                    $email->setFrom(['info@'.$_SERVER['HTTP_HOST'] => 'ON!']);
+                    $email->setFrom([Yii::$app->params['senderEmail'] => $main_name->value ?: 'Название сайта']);
                     $email->setSubject('Уведомление о 404 ошибке');
                     $email->setTo($emailNotify404->value);
 

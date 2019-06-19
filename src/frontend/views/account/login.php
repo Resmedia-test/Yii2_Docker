@@ -1,5 +1,7 @@
 <?php
 
+use frontend\widgets\AuthChoice;
+
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -7,7 +9,7 @@ use yii\widgets\ActiveForm;
 
 ?>
 
-<h4><i class="name on on-fingerprint-scan"></i> Вход</h4>
+<h4><i class="name ic ic-fingerprint-scan"></i> Вход</h4>
 
 
 <?php $form = ActiveForm::begin([
@@ -15,6 +17,12 @@ use yii\widgets\ActiveForm;
     'enableAjaxValidation' => true,
     //'enableClientValidation' => false,
 ]); ?>
+<ul class="auth-clients">
+    <?=AuthChoice::widget([
+        'baseAuthUrl' => ['account/auth'],
+        'popupMode' => false,
+    ]) ?>
+</ul>
 
 <br>
     <div class="modal-body">

@@ -79,11 +79,11 @@ class SettingController extends Controller
 
         $model = $this->findModel($id);
 
+        Yii::$app->response->format = 'json';
         if($model->load(Yii::$app->request->post()))
         {
             if (Yii::$app->request->isAjax && isset($_POST['ajax']))
             {
-                Yii::$app->response->format = 'json';
                 return \yii\widgets\ActiveForm::validate($model);
             }
 

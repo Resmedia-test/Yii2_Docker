@@ -15,23 +15,29 @@ return [
     'language' => 'ru',
     'bootstrap' => ['log'],
     'modules' => [
+        'articles' => [
+            'class' => 'backend\modules\articles\Module',
+        ],
         'content' => [
             'class' => 'backend\modules\content\Module',
         ],
         'main' => [
             'class' => 'backend\modules\main\Module',
         ],
+        'comments' => [
+            'class' => 'backend\modules\comments\Module',
+        ],
         'users' => [
             'class' => 'backend\modules\users\Module',
-        ],
-        'library' => [
-            'class' => 'backend\modules\library\Module',
         ],
         'gridview' =>  [
             'class' => '\kartik\grid\Module',
         ],
         'requests' => [
             'class' => 'backend\modules\requests\Module',
+        ],
+        'subscription' => [
+            'class' => 'backend\modules\subscription\Module',
         ],
         'debug' => [
             'class' => 'yii\debug\Module',

@@ -1,4 +1,7 @@
 <?php
+
+use yii\web\View;
+
 $params = array_merge(
     require(__DIR__ . '/../../common/config/params.php'),
     require(__DIR__ . '/../../common/config/params-local.php'),
@@ -20,6 +23,11 @@ return [
     'components' => [
         'assetManager' => [
             'linkAssets' => true,
+            'bundles' => [
+                'yii\web\JqueryAsset' => [
+                    'jsOptions' => ['position' => View::POS_HEAD]
+                ],
+            ],
         ],
         'mobileDetect' => [
             'class' => 'ustmaestro\mobiledetect\MobileDetect'
@@ -35,14 +43,13 @@ return [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            //'viewPath' => '@backend/mail',
-            'useFileTransport' => false,//set this property to false to send mails to real email addresses
-            //comment the following array to send mail using php's mail function
+            'viewPath' => '@common/mail',
+            'useFileTransport' => false,
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.yandex.ru',
-                'username' => 'test@test.ru',
-                'password' => 'Res&983&rt64ERsd',
+                'username' => 'test@resmedia.ru',
+                'password' => 'GoodTest2019',
                 'port' => 587,
                 'encryption' => 'tls',
             ],
@@ -75,14 +82,18 @@ return [
         ],
     ],
     'modules' => [
+        'gridview' =>  [
+            'class' => '\kartik\grid\Module',
+        ],
         'sitemap' => [
             'class' => 'himiklab\sitemap\Sitemap',
             'models' => [
-                'common\models\Book',
+                'common\models\Article',
                 'common\models\Page',
+                'common\models\User',
             ],
         ],
-        'cacheExpire' => 1,
+        'cacheExpire' => 0,
     ],
     'params' => $params,
 ];

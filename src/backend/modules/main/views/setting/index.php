@@ -19,7 +19,6 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
 
             'id',
-            'module_id',
             'code',
             'name',
             'value:ntext',

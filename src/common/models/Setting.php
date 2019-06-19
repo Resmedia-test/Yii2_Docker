@@ -8,7 +8,6 @@ use Yii;
  * This is the model class for table "{{%settings}}".
  *
  * @property integer $id
- * @property string $module_id
  * @property string $code
  * @property string $name
  * @property string $value
@@ -32,13 +31,14 @@ class Setting extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['module_id', 'code', 'name', 'element'], 'required'],
+            [['code', 'name', 'element'], 'required'],
             [['value', 'element'], 'string'],
             [['status'], 'integer'],
-            [['module_id', 'code'], 'string', 'max' => 50],
+            [['code'], 'string', 'max' => 50],
             [['name'], 'string', 'max' => 100],
             [['code'], 'unique'],
-            [['name'], 'unique']
+            [['name'], 'unique'],
+            ['value', 'default', 'value' => 'Content']
         ];
     }
 
@@ -49,7 +49,6 @@ class Setting extends \yii\db\ActiveRecord
     {
         return [
             'id' => '#',
-            'module_id' => 'Модуль',
             'code' => 'Системное название',
             'name' => 'Описание',
             'value' => 'Значение',

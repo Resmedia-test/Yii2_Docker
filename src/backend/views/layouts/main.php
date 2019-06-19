@@ -1,5 +1,6 @@
 <?php
 use backend\assets\AppAsset;
+use common\models\Setting;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
@@ -18,7 +19,7 @@ AppAsset::register($this);
 <head>
     <meta charset="<?= Yii::$app->charset ?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head(); ?>
@@ -37,8 +38,9 @@ AppAsset::register($this);
 <body>
     <?php $this->beginBody() ?>
     <?php
+    $main_name = Setting::findOne(['code' => 'site_name', 'status' => 1]);
     NavBar::begin([
-        'brandLabel' => Yii::$app->name,
+        'brandLabel' => Yii::$app->name .' '. $main_name->value ?: 'Название сайта',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-default navbar-fixed-top',
@@ -49,14 +51,14 @@ AppAsset::register($this);
     $menuItems = [
         [
             'label' => '<span class="time" id="timeNow">
-                     <script src="/office/scripts/time.js"></script>
+                     <script src="/scripts/time.js"></script>
              </span>',
-            'url' => false,
+            'url' => null,
             'options' => ['class' => 'hidden-sm hidden-xs'],
         ],
         [
             'label' => 'Вернуться на сайт',
-            'url' => '/',
+            'url' => Yii::$app->params['domainFrontend'],
         ],
         [
             'label' => '<i class="glyphicon glyphicon-cog"></i> Настройки',

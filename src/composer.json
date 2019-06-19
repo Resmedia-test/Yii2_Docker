@@ -23,6 +23,7 @@
         "fortawesome/font-awesome": "*",
         "kartik-v/yii2-widgets": "*",
         "2amigos/yii2-ckeditor-widget": "*",
+        "zxbodya/yii2-image-attachment": "*@dev",
         "sunhater/kcfinder": "*",
         "iutbay/yii2-kcfinder": "dev-master",
         "himiklab/yii2-sortable-grid-view-widget": "*",
@@ -34,11 +35,16 @@
         "yiisoft/yii2-authclient": "^2.0",
         "yii2tech/embedded": "^1.0",
         "kartik-v/yii2-widget-fileinput": "@dev",
+        "vova07/yii2-imperavi-widget": "*",
         "yiisoft/yii2-imagine": "^2.0",
+        "zxbodya/yii2-gallery-manager": "*@dev",
         "zelenin/yii2-rss": "^0.1.1",
         "kartik-v/yii2-export": "*",
         "beaten-sect0r/yii2-db-manager": "*",
-        "ustmaestro/yii2-mobile-detect": "dev-master"
+        "kartik-v/bootstrap-star-rating": "^4.0",
+        "ustmaestro/yii2-mobile-detect": "dev-master",
+        "kartik-v/yii2-editable": "^1.7",
+        "kartik-v/yii2-date-range": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

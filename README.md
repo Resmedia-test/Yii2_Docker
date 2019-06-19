@@ -1,4 +1,4 @@
-# WIP! - work in progress
+#WIP - Yii code refactoring
 
 ## This is docker environment with Yii2-advanced in it 
 
@@ -14,64 +14,90 @@ PhpMyAdmin | phpmyadmin/phpmyadmin
 
 ### Yii2-advanced
 
-After the start you will get divided by domains frontend and backend side, as well as ready-made sections with minimal functions: Users, Settings, Pages, Library, Menu, Content has a form of filling meta tags.
+After start you will get divided by domains frontend and backend side, as well as ready-made sections with minimal 
+functions: Users, Settings, Pages, Menu, Content, Articles, Comments, Cabinet, Search all content has a form of filling meta tags. 
+Without styles. All in Russian lang.
 
-### Start
+--------------------------------------------
 
-1 - Add to your local machine in hosts file:
+### 1 Go to directory where your sites
 
+RUN
 ```bash
-127.0.0.1 testsite.docker        //Frontend
-127.0.0.1 office.testsite.docker //Backend
+git clone git@github.com:Resmedia/Yii2_Docker.git
 ```
 
-2 - Add to docker (file sharing) in settings your project folder
+### 2 Add project folder to file sharing of Docker settings 
 
-![Image of Docker](https://image.prntscr.com/image/C5r_SEtQS5_XaMBe6tDtyQ.png)
+![img](https://image.prntscr.com/image/C5r_SEtQS5_XaMBe6tDtyQ.png)
 
-### Settings:
+### 3 Start
 
-If you want to set all your settings then go to `/src/environments` for example `/prod/common/config/main-local.php`, but in this case you need to change all server settings
-### Commands:
 ```bash
-docker-compose up -d  // To start without log
-docker-compose up     // To start with log
-
-docker-compose down   // To stop
+docker-compose up     // Start with log
+docker-compose up -d  // Start without log
+docker-compose down   // Stop all containers
 ```
 
-GO: [http://office.testsite.docker](http://office.testsite.docker)
+### 4 Look to host file
 
-Login: test@test.ru
+```bash
+docker exec -it core_php /bin/bash
+./yii rbac/init
+```
+
+### 5 Office http://office.testsite.docker
+
+```bash
+127.0.0.1 testsite.docker
+127.0.0.1 office.testsite.docker
+```
+if there you don't find it, write themselves to the end of the file
+
+-------------------------------
+
+### Office 
+```bash
+http://office.testsite.docker
+Login: test@testsite.docker
 Password: 1234567890
-
-### PhpMyAdmin
-
-Login: root
-Password: toor
-
-[http://testsite.docker:8080](http://testsite.docker:8080)
-
---------------------------------------------------------------------
-### Mistakes that can be
-
-If errors with MYSQL:
-```bash
-docker-compose down                                              // Stop all containers
-sudo docker volume rm $(sudo docker volume ls -qf dangling=true) // Clen all old volume
 ```
 
-If errors with packages:
+### MySqlAdmin
+
+```bash
+http://testsite.docker:8080
+Login: root
+Pass: toor
+```
+### Migration
+
+```bash
+docker exec -it core_php /bin/bash
+./yii migrate/create <migration_name>
+```
+
+### Errors 
+
+If Errors with MYSQL
+```bash
+docker-compose down
+sudo docker volume rm $(sudo docker volume ls -qf dangling=true)
+```
+
+if errors with packages
 ```bash
 composer global require "fxp/composer-asset-plugin:@dev"
 ```
 
-If can't start nginx and error is like `Bind for 0.0.0.0:80: unexpected error (Failure EADDRINUSE)` on mac os 
-```
+If can't start nginx and error is like Bind for 0.0.0.0:80: unexpected error (Failure EADDRINUSE) on mac os
+
+```bash
 sudo lsof -iTCP -sTCP:LISTEN -n -P
 sudo killall httpd // maybe :-)
 Or you can change port in settings
 ```
-*TODO*
 
-- [ ]  Refactoring Yii2 code
+### TODO 
+
+[x] Save information in cabinet
