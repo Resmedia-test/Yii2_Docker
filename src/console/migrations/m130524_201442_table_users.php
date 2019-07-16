@@ -31,7 +31,7 @@ class m130524_201442_table_users extends Migration
             'password_reset_token' => $this->string()->notNull()->defaultValue(""),
             'activation_token' => $this->string()->notNull()->defaultValue(""),
             'status' => $this->smallInteger()->notNull()->defaultValue(10),
-            'rates' => $this->text()->notNull()->defaultValue("{}"),
+            'rates' => $this->text()->notNull(),
             'last_login' => $this->integer()->notNull(),
         ], $tableOptions);
     }
