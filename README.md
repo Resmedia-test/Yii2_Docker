@@ -4,11 +4,6 @@
 
 ### Inside: 
 
-#This is push request from fork!
-### User Resmedia-TEST!
-## Second test
-### Hello!
-
 Image name | Version
 ------------ | -------------
 Nginx | nginx:stable-alpine
